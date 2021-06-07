@@ -17,7 +17,7 @@ const Investments = ({
     const source = axios.CancelToken.source();
     const cancelToken = source.token;
 
-    async function loadInvestimentsFunds() {
+    async function loadFunds() {
       const res = await api.get('reports', { cancelToken });
       const data = orgByMonth(
         res.data.filter(
@@ -26,7 +26,7 @@ const Investments = ({
       );
 
       let i = 0;
-      const formatedData = data.map(inv => {
+      const formattedData = data.map(inv => {
         const percent =
           i !== 0
             ? (data[i].value.toFixed(2) / data[i - 1].value.toFixed(2)) * 100 -
@@ -35,21 +35,22 @@ const Investments = ({
         i++;
         return {
           ...inv,
-          valueFormated: formatInvestment(inv.value.toFixed(2)),
+          valueFormatted: formatInvestment(inv.value.toFixed(2)),
           percentMonth: percent.toFixed(2),
         };
       });
 
       setTotalIncome(
-        (formatedData[11].value.toFixed(2) / formatedData[0].value.toFixed(2)) *
+        (formattedData[11].value.toFixed(2) /
+          formattedData[0].value.toFixed(2)) *
           100 -
           100
       );
 
-      setInvestmentFund(formatedData);
+      setInvestmentFund(formattedData);
     }
 
-    loadInvestimentsFunds();
+    loadFunds();
 
     return () => {
       source.cancel();
