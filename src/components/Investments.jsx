@@ -11,7 +11,7 @@ const Investments = ({
   typeInvestment = 'Tipo_de_Investimento',
   currentInvestmentId = 'id_do_Investimento',
 }) => {
-  const [investmentFund, setInvestmentFund] = useState([]);
+  const [allInvestments, setAllInvestments] = useState([]);
   const [totalIncome, setTotalIncome] = useState(0);
   let textColor = 'text-green-500';
 
@@ -42,14 +42,14 @@ const Investments = ({
         };
       });
 
+      //prettier-ignore
       setTotalIncome(
-        (formattedData[11].value.toFixed(2) /
-          formattedData[0].value.toFixed(2)) *
-          100 -
-          100
+        (
+          formattedData[11].value.toFixed(2) / formattedData[0].value.toFixed(2)
+        ) * 100 - 100
       );
 
-      setInvestmentFund(formattedData);
+      setAllInvestments(formattedData);
     }
 
     loadFunds();
@@ -76,7 +76,7 @@ const Investments = ({
       </HeaderInvestments>
 
       <ListaInvestments>
-        {investmentFund.map(investment => {
+        {allInvestments.map(investment => {
           const incomeExpense =
             investment.percentMonth >= 0 ? 'text-green-500' : 'text-red-500';
           return (
