@@ -4,6 +4,8 @@ import orgByMonth from '../util/orgByMonth';
 import api from '../services/api';
 import Item from './Item';
 import { formatInvestment } from '../util/format';
+import ListaInvestments from '../components/ListaInvestments';
+import HeaderInvestments from './HeaderInvestments';
 
 const Investments = ({
   typeInvestment = 'Tipo_de_Investimento',
@@ -63,14 +65,17 @@ const Investments = ({
 
   return (
     <div className="container mx-auto p-4 border my-3 flex flex-col items-center space-x-2">
-      <h1 className="text-2xl font-semibold ">{typeInvestment}</h1>
-      <h2 className="font-semibold text-lg ">
-        Rendimento Total:{' '}
-        <span className={`${textColor}`}>{`${formatInvestment(
-          totalIncome
-        )} (${totalIncome.toFixed(2)}%)`}</span>
-      </h2>
-      <ul className="min-w-full">
+      <HeaderInvestments>
+        <h1 className="text-2xl font-semibold ">{typeInvestment}</h1>
+        <h2 className="font-semibold text-lg ">
+          Rendimento Total:{' '}
+          <span className={`${textColor}`}>{`${formatInvestment(
+            totalIncome
+          )} (${totalIncome.toFixed(2)}%)`}</span>
+        </h2>
+      </HeaderInvestments>
+
+      <ListaInvestments>
         {investmentFund.map(investment => {
           const incomeExpense =
             investment.percentMonth >= 0 ? 'text-green-500' : 'text-red-500';
@@ -80,7 +85,7 @@ const Investments = ({
             </Item>
           );
         })}
-      </ul>
+      </ListaInvestments>
     </div>
   );
 };
