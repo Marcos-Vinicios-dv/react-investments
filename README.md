@@ -3,7 +3,7 @@
 <p>Trata-se de um app desenvolvido como trabalho prático do bootcamp IGTI, onde varias tabelas foram criadas a partir de dados consumidos de uma fake API.</p>
 
 ### Imagem da aplicação:
-<img width="100%" src="https://marcos-dev-portfolio.netlify.app/static/media/ReactInvestments.668b86cc.png" alt="Página Pricipal"></img>
+<img width="100%" src="https://ik.imagekit.io/6s2mndhy9tk/ReactInvestments_4g8wLUCKs6.png" alt="Página Pricipal"></img>
 
 ### Tecnologias utilizadas:
 
